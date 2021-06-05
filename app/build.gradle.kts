@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -39,6 +41,10 @@ android {
 }
 
 dependencies {
+    val lifecycleVersion = "2.3.1"
+    val archVersion = "2.1.0"
+    val roomVersion = "2.3.0"
+
     implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("com.google.android.material:material:1.3.0")
@@ -56,4 +62,19 @@ dependencies {
     //Indicator
     implementation("com.tbuonomo:dotsindicator:4.2")
 
+    //ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
+    // optional - Test helpers for LiveData
+    testImplementation("androidx.arch.core:core-testing:$archVersion")
+
+    //Room
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:$roomVersion")
 }
