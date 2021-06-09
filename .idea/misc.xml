@@ -10,6 +10,14 @@
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/fragment_setting.xml" value="0.17401215805471124" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/fragment_song.xml" value="0.17401215805471124" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking.xml" value="0.22" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_album.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_artist.xml" value="0.2" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_playlist.xml" value="0.2" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_song.xml" value="0.1" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_album_adapter.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_artist_adapter.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_playlist_adapter.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_song_adapter.xml" value="0.22" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/menu/bottom_menu.xml" value="0.2074074074074074" />
       </map>
     </option>

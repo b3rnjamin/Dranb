@@ -1,44 +1,43 @@
 package com.brdx.dranb.ui.main.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.*
+import androidx.recyclerview.widget.ConcatAdapter
 import com.brdx.dranb.R
 import com.brdx.dranb.data.model.Song
-import com.brdx.dranb.databinding.FragmentMainBinding
 import com.brdx.dranb.databinding.FragmentRankingBinding
-import com.brdx.dranb.ui.main.adapter.SongAdapter
+import com.brdx.dranb.presentation.main.RankingViewModel
+import com.brdx.dranb.presentation.main.RankingViewState
+import com.brdx.dranb.ui.main.adapter.RankingSongAdapter
+import com.brdx.dranb.ui.main.adapter.concat.AlbumConcatAdapter
+import com.brdx.dranb.ui.main.adapter.concat.ArtistConcatAdapter
+import com.brdx.dranb.ui.main.adapter.concat.SongConcatAdapter
+import com.brdx.dranb.util.Extension.visible
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
 
-class RankingFragment : Fragment(R.layout.fragment_ranking), SongAdapter.OnSongClickListener {
+class RankingFragment :
+    Fragment(R.layout.fragment_ranking),
+    RankingSongAdapter.OnSongClickListener {
     private lateinit var binding: FragmentRankingBinding
+
     //Context
     private val ctx by lazy { requireContext() }
 
-    private val topSongAdapter by lazy {SongAdapter(ctx, this@RankingFragment)}
-    private val topAlbumAdapter by lazy { SongAdapter(ctx,this@RankingFragment) }
-    private val topArtistAdapter by lazy { SongAdapter(ctx, this@RankingFragment) }
+    private val topSongAdapter by lazy { RankingSongAdapter(this@RankingFragment) }
+    private val topAlbumAdapter by lazy { RankingSongAdapter(this@RankingFragment) }
+    private val topArtistAdapter by lazy { RankingSongAdapter(this@RankingFragment) }
+
+    private val viewModel by activityViewModels<RankingViewModel>()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRankingBinding.bind(view)
-
-        binding.gridTopSongs.apply {
-            adapter = topSongAdapter
-            layoutManager = GridLayoutManager(ctx, 2, RecyclerView.VERTICAL,false)
-        }
-        binding.gridTopAlbums.apply {
-            adapter = topAlbumAdapter
-            layoutManager = GridLayoutManager(ctx, 2, RecyclerView.VERTICAL,false)
-        }
-        binding.gridTopArtists.apply {
-            adapter = topArtistAdapter
-            layoutManager = GridLayoutManager(ctx, 2, RecyclerView.VERTICAL,false)
-        }
 
         val songList = listOf(
             Song("Side To Side", "Dangerous Woman", R.drawable.cover_1, "0"),
@@ -46,15 +45,83 @@ class RankingFragment : Fragment(R.layout.fragment_ranking), SongAdapter.OnSongC
             Song("Can´t Get You out of My Head", "Kylie Minogue", R.drawable.cover_6, "5"),
             Song("It's Not Your Fault", "PARANOIA", R.drawable.cover_3, "2"),
             Song("Meaningless", "Charlotte Cardin", R.drawable.cover_4, "3"),
-            Song("medicine", "amo", R.drawable.cover_5, "4"),
+            Song("medicine", "amo", R.drawable.cover_5, "4")
         )
 
-        topSongAdapter.setData(songList)
-        topAlbumAdapter.setData(songList)
-        topArtistAdapter.setData(songList)
+        topSongAdapter.songList = songList
+        topAlbumAdapter.songList = songList
+        topArtistAdapter.songList = songList
+
+        val concatAdapter = ConcatAdapter()
+
+        concatAdapter.apply {
+            addAdapter(0, SongConcatAdapter(topSongAdapter))
+            addAdapter(1, AlbumConcatAdapter(topAlbumAdapter))
+            addAdapter(2, ArtistConcatAdapter(topArtistAdapter))
+        }
+
+        binding.recyclerRanking.adapter = concatAdapter
+
+    /*
+        viewModel.songList.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .onEach { songList ->
+                concatAdapter.addAdapter(0, SongConcatAdapter(topSongAdapter))
+                concatAdapter.addAdapter(1, AlbumConcatAdapter(topAlbumAdapter))
+                concatAdapter.addAdapter(2, ArtistConcatAdapter(topArtistAdapter))
+
+                topSongAdapter.songList = songList
+                topAlbumAdapter.songList = songList
+                topArtistAdapter.songList = songList
+
+                binding.recyclerRanking.adapter = concatAdapter
+
+            }.launchIn(lifecycleScope)
+        viewModel.viewState.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).onEach(::render)
+            .launchIn(lifecycleScope)*/
+
+        /*addRepeatingJob(Lifecycle.State.STARTED) {
+            launch {
+                viewModel.songList.collect { songList ->
+                    concatAdapter.apply {
+                        addAdapter(0, topSongAdapter)
+                        addAdapter(1, topAlbumAdapter)
+                        addAdapter(2, topArtistAdapter)
+                    }
+
+                    topSongAdapter.songList = songList
+                    topAlbumAdapter.songList = songList
+                    topArtistAdapter.songList = songList
+
+                    binding.recyclerRanking.adapter = concatAdapter
+                }
+            }
+            launch {
+                viewModel.viewState.collect(::render)
+            }
+            // viewModel.process(RankingEvent.LoadRanking)
+
+
+            /*binding.gridTopSongs.hideEvents.collect {
+                Snackbar.make(binding.rootLayout, it.toString(), Snackbar.LENGTH_SHORT)
+                    .setAnchorView(activity?.findViewById(R.id.bottomNavigationView))
+                    .show() }*/
+        }*/
+
+        //viewModel.process(RankingEvent.LoadRanking)
+        /*lifecycleScope.launchWhenStarted {
+        }*/
+    }
+
+
+    private fun render(viewState: RankingViewState) = with(binding) {
+        progressBar.visible = viewState.loading
+        message.isVisible = viewState.error != null
+        viewState.error?.let(message::setText)
     }
 
     override fun onClick(song: Song) {
-        TODO("Not yet implemented")
+        Snackbar.make(binding.root, song.title, Snackbar.LENGTH_SHORT)
+            .setAnchorView(activity?.findViewById(R.id.bottomNavigationView))
+            .show()
     }
 }

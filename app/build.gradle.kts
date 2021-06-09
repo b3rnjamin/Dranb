@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    val lifecycleVersion = "2.3.1"
+    val lifecycleVersion = "2.4.0-alpha01"
     val archVersion = "2.1.0"
     val roomVersion = "2.3.0"
 
@@ -65,6 +65,7 @@ dependencies {
     //ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     // alternately - if using Java8, use the following instead of lifecycle-compiler
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
     // optional - Test helpers for LiveData
@@ -77,4 +78,12 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$roomVersion")
+
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0-native-mt")
+
+    //Recycler
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
 }

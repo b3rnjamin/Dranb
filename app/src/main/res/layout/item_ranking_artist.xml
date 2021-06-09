@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
-        app:cardCornerRadius="6dp"
+        app:cardCornerRadius="360dp"
         app:cardElevation="4dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,13 +26,13 @@
             app:srcCompat="@drawable/cover_1" />
     </androidx.cardview.widget.CardView>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textSong"
+        style="@style/TextAppearance.AppCompat.Headline3."
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Dangerous Woman"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardSongCover"
         app:layout_constraintStart_toStartOf="@+id/cardSongCover"

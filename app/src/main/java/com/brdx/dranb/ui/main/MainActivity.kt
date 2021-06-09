@@ -3,6 +3,7 @@ package com.brdx.dranb.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.brdx.dranb.R
 import com.brdx.dranb.databinding.ActivityMainBinding
@@ -18,6 +19,14 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            if (it.itemId == R.id.mainFragment) {
+                navController.popBackStack(R.id.mainFragment, false)
+                true
+            }
+            else
+                NavigationUI.onNavDestinationSelected(it , navController)
+        }
 
     }
 }
