@@ -7,7 +7,7 @@ import com.brdx.dranb.core.BaseConcatHolder
 import com.brdx.dranb.databinding.RankingSongAdapterBinding
 import com.brdx.dranb.ui.main.adapter.RankingSongAdapter
 
-class SongConcatAdapter(private val songAdapter: RankingSongAdapter) :
+class SongConcatAdapter(private val rankingSongAdapter: RankingSongAdapter) :
     RecyclerView.Adapter<BaseConcatHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseConcatHolder<*> {
@@ -18,7 +18,7 @@ class SongConcatAdapter(private val songAdapter: RankingSongAdapter) :
 
     override fun onBindViewHolder(holder: BaseConcatHolder<*>, position: Int) {
         when (holder) {
-            is ConcatViewHolder -> holder.bind(songAdapter)
+            is ConcatViewHolder -> holder.bind(rankingSongAdapter)
         }
     }
 

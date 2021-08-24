@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.brdx.dranb.core.BaseViewHolder
 import com.brdx.dranb.data.model.Song
 import com.brdx.dranb.databinding.ItemRankingSongBinding
+import com.brdx.dranb.ui.main.interfaces.OnRankingListener
 import com.brdx.dranb.util.Extension.basicDiffUtil
 
 class RankingSongAdapter(
-    private val itemClickListener: OnSongClickListener
+    private val rankingListener: OnRankingListener
 ) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     var songList: List<Song> by basicDiffUtil(
@@ -20,22 +21,19 @@ class RankingSongAdapter(
         areContentsTheSame = { old, new -> old == new }
     )
 
-    interface OnSongClickListener {
-        fun onClick(song: Song)
-    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): BaseViewHolder<*> {
-        val binding = ItemRankingSongBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRankingSongBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val holder = SongViewHolder(binding, parent.context)
         binding.imageSongCover.setOnClickListener {
             val position = holder.bindingAdapterPosition.takeIf {
                 it != DiffUtil.DiffResult.NO_POSITION
             } ?: return@setOnClickListener
 
-            itemClickListener.onClick(songList[position])
+            rankingListener.onSongCLickListener(songList[position])
         }
         return holder
     }
@@ -55,7 +53,7 @@ class RankingSongAdapter(
     ) :
         BaseViewHolder<Song>(binding.root) {
         override fun bind(item: Song, position: Int) {
-            binding.textSong.text = "${position + 1} - ${item.title}"
+            binding.textSong.text = "${position + 1} - ${item.name}"
             binding.imageSongCover.setImageDrawable(
                 AppCompatResources.getDrawable(
                     context,

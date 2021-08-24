@@ -31,12 +31,12 @@ class RankingViewModel : ViewModel() {
 
     private fun fetchTopSongs() {
         val __songList = listOf(
-            Song("Side To Side", "Dangerous Woman", R.drawable.cover_1, "0"),
-            Song("Levitating", "Future Nostalgia", R.drawable.cover_2, "1"),
-            Song("Can´t Get You out of My Head", "Kylie Minogue", R.drawable.cover_6, "5"),
-            Song("It's Not Your Fault", "PARANOIA", R.drawable.cover_3, "2"),
-            Song("Meaningless", "Charlotte Cardin", R.drawable.cover_4, "3"),
-            Song("medicine", "amo", R.drawable.cover_5, "4")
+            Song("0","Side To Side", "Dangerous Woman", R.drawable.cover_1),
+            Song("1","Levitating", "Future Nostalgia", R.drawable.cover_2),
+            Song("2","Can´t Get You out of My Head", "Kylie Minogue", R.drawable.cover_6),
+            Song("3","It's Not Your Fault", "PARANOIA", R.drawable.cover_3),
+            Song("4","Meaningless", "Charlotte Cardin", R.drawable.cover_4),
+            Song("5","medicine", "amo", R.drawable.cover_5)
         )
 
         viewModelScope.launch {

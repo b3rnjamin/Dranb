@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.brdx.dranb.core.BaseConcatHolder
 import com.brdx.dranb.databinding.RankingAlbumAdapterBinding
+import com.brdx.dranb.ui.main.adapter.RankingAlbumAdapter
 import com.brdx.dranb.ui.main.adapter.RankingSongAdapter
 
-class AlbumConcatAdapter(private val songAdapter: RankingSongAdapter) :
+class AlbumConcatAdapter(private val albumAdapter: RankingAlbumAdapter) :
     RecyclerView.Adapter<BaseConcatHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseConcatHolder<*> {
@@ -18,15 +19,15 @@ class AlbumConcatAdapter(private val songAdapter: RankingSongAdapter) :
 
     override fun onBindViewHolder(holder: BaseConcatHolder<*>, position: Int) {
         when (holder) {
-            is ConcatViewHolder -> holder.bind(songAdapter)
+            is ConcatViewHolder -> holder.bind(albumAdapter)
         }
     }
 
     override fun getItemCount(): Int = 1
 
     private inner class ConcatViewHolder(val binding: RankingAlbumAdapterBinding) :
-        BaseConcatHolder<RankingSongAdapter>(binding.root) {
-        override fun bind(adapter: RankingSongAdapter) {
+        BaseConcatHolder<RankingAlbumAdapter>(binding.root) {
+        override fun bind(adapter: RankingAlbumAdapter) {
             binding.recyclerRanking.adapter = adapter
         }
 

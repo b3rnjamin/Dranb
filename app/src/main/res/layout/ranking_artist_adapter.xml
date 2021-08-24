@@ -20,11 +20,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:orientation="vertical"
-        app:spanCount="2"
-        tools:listitem="@layout/item_ranking_artist">
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2">
+        //tools:listitem="@layout/item_ranking_artist"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:drawableEnd="@drawable/ic_enter"
+        android:drawablePadding="8dp"
+        android:gravity="fill_vertical|end"
+        android:text="View More" />
 
 </LinearLayout>

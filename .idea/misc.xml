@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/drawable/ic_enter.xml" value="0.2175925925925926" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/drawable/ic_home.xml" value="0.2175925925925926" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/drawable/ic_search.xml" value="0.2175925925925926" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/drawable/ic_setting.xml" value="0.2175925925925926" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/fragment_main.xml" value="0.25" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/fragment_ranking.xml" value="0.18" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/fragment_search.xml" value="0.17401215805471124" />
@@ -15,14 +19,14 @@
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_playlist.xml" value="0.2" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/item_ranking_song.xml" value="0.1" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_album_adapter.xml" value="0.17401215805471124" />
-        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_artist_adapter.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_artist_adapter.xml" value="0.2" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_playlist_adapter.xml" value="0.17401215805471124" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/layout/ranking_song_adapter.xml" value="0.22" />
         <entry key="..\:/Users/benja/AndroidStudioProjects/Dranb2/app/src/main/res/menu/bottom_menu.xml" value="0.2074074074074074" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
